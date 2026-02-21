@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://ci17pbknqpfry"]
+
+[ext_resource type="Script" uid="uid://bcu72n12ct1qu" path="res://Scripts/MainMenu.cs" id="1_g18y6"]
+
+[node name="MainMenu" type="Control" unique_id=1931728858]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g18y6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=932728633]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+
+[node name="StartVBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=1982659393]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="HostButton" type="Button" parent="ColorRect/StartVBoxContainer" unique_id=1571417876]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Host Game"
+
+[node name="JoinButton" type="Button" parent="ColorRect/StartVBoxContainer" unique_id=1002981359]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Join Game"
+
+[node name="OfflineButton" type="Button" parent="ColorRect/StartVBoxContainer" unique_id=761359509]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Offline"
+
+[node name="HostVBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=520389700]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="CopyInviteButton" type="Button" parent="ColorRect/HostVBoxContainer" unique_id=1492887785]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Copy Invite"
+
+[node name="StartButton" type="Button" parent="ColorRect/HostVBoxContainer" unique_id=1940933753]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Start"
+
+[node name="JoinVBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=1658400440]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="ColorRect/JoinVBoxContainer" unique_id=1751496213]
+layout_mode = 2
+text = "Enter Invite Code"
+alignment = 1
+
+[node name="Button" type="Button" parent="ColorRect/JoinVBoxContainer" unique_id=1552976942]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Join"
