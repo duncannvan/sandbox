@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Player : CharacterBody3D
 {
-    private const byte SPEED = 10;
+    private const byte SPEED = 50;
     private const float MOUSE_SENSE = 0.002f;
     private const float MAX_CAM_ANGEL_RAD = Mathf.Pi / 2;
 
@@ -45,10 +45,10 @@ public partial class Player : CharacterBody3D
 
         Vector3 frontBackDirection = _camera.GlobalTransform.Basis.Z * inputDirection.Y;
         Vector3 leftRightDirection =  _camera.GlobalTransform.Basis.X * inputDirection.X;
-        Vector3 direction = (frontBackDirection + leftRightDirection).Normalized();
+        Vector3 direction = frontBackDirection + leftRightDirection;
         direction.Y = 0;
 
-        Velocity = direction * SPEED;
+        Velocity = direction.Normalized() * SPEED;
         MoveAndSlide();
     }
 

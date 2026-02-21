@@ -9,6 +9,10 @@ albedo_color = Color(0, 0.321569, 0.172549, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x3h1o"]
 size = Vector3(90, 0.05, 90)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_224jq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_28ghu"]
+
 [node name="Environment" type="Node3D" unique_id=1119110423]
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=2002761751]
@@ -26,3 +30,12 @@ shape = SubResource("BoxShape3D_x3h1o")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4, 0)
 shadow_enabled = true
 shadow_blur = 0.5
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=444745907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.514557, 3.3868499)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2069469101]
+shape = SubResource("BoxShape3D_224jq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1305554483]
+mesh = SubResource("BoxMesh_28ghu")
