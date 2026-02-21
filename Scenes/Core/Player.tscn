@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cffjduipbb3s5"]
 
-[ext_resource type="Script" uid="uid://djtmkbyk3ehdp" path="res://scripts/Player.cs" id="1_7h6ip"]
+[ext_resource type="Script" uid="uid://2l1csqi0tjct" path="res://Scripts/Player.cs" id="1_0c0kw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3fppy"]
 
@@ -8,7 +8,7 @@
 
 [node name="Player" type="CharacterBody3D" unique_id=654385099]
 collision_mask = 3
-script = ExtResource("1_7h6ip")
+script = ExtResource("1_0c0kw")
 
 [node name="Character" type="Node3D" parent="." unique_id=759936066]
 
