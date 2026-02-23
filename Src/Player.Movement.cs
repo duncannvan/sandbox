@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Player
 {
-    private const byte SPEED = 50; // TODO: Move to stat
+    private const byte Speed = 10; // TODO: Move to stat
 
     private void HandleMovement()
     {
@@ -16,7 +16,7 @@ public partial class Player
         Vector3 direction = frontBackDirection + leftRightDirection;
         direction.Y = 0;
 
-        Velocity = direction.Normalized() * SPEED;
+        Velocity = direction.Normalized() * Speed;
         MoveAndSlide();
     }
 }

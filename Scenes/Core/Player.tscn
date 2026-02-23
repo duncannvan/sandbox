@@ -1,25 +1,34 @@
 [gd_scene format=3 uid="uid://cffjduipbb3s5"]
 
-[ext_resource type="Script" uid="uid://2l1csqi0tjct" path="res://Scripts/Player.cs" id="1_0c0kw"]
+[ext_resource type="Script" uid="uid://2l1csqi0tjct" path="res://Src/Player.cs" id="1_0c0kw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fppy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3fppy"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fppy"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_0c0kw"]
+top_radius = 0.1
+bottom_radius = 0.4
+height = 1.0
 
 [node name="Player" type="CharacterBody3D" unique_id=654385099]
 collision_mask = 3
 script = ExtResource("1_0c0kw")
 
-[node name="Character" type="Node3D" parent="." unique_id=759936066]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1366353104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3fppy")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Character" unique_id=2068142269]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2068142269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_3fppy")
 
-[node name="Marker3D" type="Marker3D" parent="." unique_id=353738438]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.576295, 0)
+[node name="Head" type="Node3D" parent="." unique_id=1307529562]
 
-[node name="PlayerCamera" type="Camera3D" parent="Marker3D" unique_id=1127465453]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head" unique_id=1436162644]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.2723339, -0.41896725)
+mesh = SubResource("CylinderMesh_0c0kw")
+
+[node name="PlayerCamera" type="Camera3D" parent="Head" unique_id=1127465453]
 unique_name_in_owner = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1366353104]
-shape = SubResource("CapsuleShape3D_3fppy")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

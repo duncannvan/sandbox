@@ -14,9 +14,21 @@ config/name="Sandbox"
 run/main_scene="uid://ci17pbknqpfry"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 
+[autoload]
+
+NetworkManager="*uid://b7xlsjpydqns7"
+
 [dotnet]
 
 project/assembly_name="Sandbox"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Scenes/": "green",
+"res://Src/": "blue"
+}
 
 [input]
 

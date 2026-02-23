@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public partial class MainMenu : Control
+public partial class MainMenu : CanvasLayer
 {
 	private enum MenuState
 	{
@@ -10,9 +10,6 @@ public partial class MainMenu : Control
 		HostMenu,
 		JoinMenu
 	}
-
-	[Export]
-	private PackedScene GameScene { get; set; }
 
 	private readonly Dictionary<MenuState, Control> _menus = [];
 	private Button _backButton;
@@ -22,16 +19,20 @@ public partial class MainMenu : Control
 		RegisterMenus();
 
 		Button offlineButton = GetNode<Button>("%OfflineButton");
-		offlineButton.Pressed += () => GetTree().ChangeSceneToPacked(GameScene);
+		offlineButton.Pressed += () =>
+		{
+			NetworkManager.Instance.AddPlayer();
+			NetworkManager.Instance.LoadGame();
+		};
 
 		Button hostButton = GetNode<Button>("%HostButton");
 		hostButton.Pressed += () => DisplayMenu(MenuState.HostMenu);
 
 		Button startHostButton = GetNode<Button>("%StartHostButton");
-		startHostButton.Pressed += () => GetTree().ChangeSceneToPacked(GameScene);
+		startHostButton.Pressed += () => NetworkManager.Instance.HostGame();
 
 		Button joinButton = GetNode<Button>("%JoinButton");
-		joinButton.Pressed += () => DisplayMenu(MenuState.JoinMenu);
+		joinButton.Pressed += () => NetworkManager.Instance.JoinGame();
 
 		_backButton = GetNode<Button>("%BackButton");
 		_backButton.Pressed += () => DisplayMenu(MenuState.MainMenu);
@@ -39,14 +40,14 @@ public partial class MainMenu : Control
 
 	private void RegisterMenus()
 	{
-		const string MENU_SUFFIX = "menu";
+		const string MenuSuffix = "menu";
 		Node menuContainer = GetNode<Node>("%MenuContainer");
 
 		foreach(Node child in menuContainer.GetChildren())
 		{
 			string childName = child.Name.ToString();
 
-			if(!childName.Contains(MENU_SUFFIX, StringComparison.CurrentCultureIgnoreCase)) continue;
+			if(!childName.Contains(MenuSuffix, StringComparison.CurrentCultureIgnoreCase)) continue;
 
 			if (Enum.TryParse(childName, true, out MenuState result))
 			{

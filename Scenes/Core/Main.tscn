@@ -1,13 +1,8 @@
 [gd_scene format=3 uid="uid://dugaivbj1o66n"]
 
 [ext_resource type="PackedScene" uid="uid://dttcjyceh0ms4" path="res://Scenes/Core/Environment.tscn" id="1_oept5"]
-[ext_resource type="PackedScene" uid="uid://cffjduipbb3s5" path="res://Scenes/Core/Player.tscn" id="2_iernp"]
 
-[node name="Main" type="Node3D" unique_id=1706410996]
+[node name="Main" type="Node" unique_id=442696121]
 
 [node name="Environment" parent="." unique_id=1119110423 instance=ExtResource("1_oept5")]
-transform = Transform3D(0.9999441, -0.010496296, -0.0012216277, 0.010495209, 0.99994457, -0.0008958906, 0.0012309507, 0.00088303775, 0.99999887, 0, 0, 0)
-
-[node name="Player" parent="." unique_id=654385099 instance=ExtResource("2_iernp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9187132, 0)
-slide_on_ceiling = false
+transform = Transform3D(0.9999441, -0.010496296, -0.0012216277, 0.010495209, 0.99994457, -0.0008958906, 0.0012309507, 0.00088303775, 0.99999887, -0.0015101433, 0.004284382, -0.0015296936)
