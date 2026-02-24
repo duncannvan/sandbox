@@ -17,6 +17,11 @@ public partial class Player : CharacterBody3D
 
     private void HandleCameraRotation(InputEventMouseMotion mouseMotion)
     {
+        // TEMP: Easy to use with multiple debug instances
+        if (!Input.IsMouseButtonPressed(MouseButton.Left))
+        {
+            return;
+        }
         const float MAX_CAM_ANGEL_RAD = Mathf.Pi / 2;
 
         // Rotate player body

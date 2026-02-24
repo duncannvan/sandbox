@@ -53,7 +53,7 @@ public partial class MainMenu : CanvasLayer
 	{
 		if(NetworkManager.Instance.JoinGame() == Error.Ok)
 		{
-			CreateWorld();
+			CreateWorld(); // TODO: Remove, create when client successfully connects to server
 		}
 	}
 

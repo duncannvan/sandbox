@@ -28,6 +28,7 @@ public partial class Player
         {
             SetProcess(false);
             SetPhysicsProcess(false);
+            SetProcessUnhandledInput(false);
         }
     }
 }

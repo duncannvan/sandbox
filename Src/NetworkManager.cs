@@ -58,6 +58,7 @@ public partial class NetworkManager : Node
 
     private void OnConnectOk()
     {
+        // TODO: Create world
         int peerId = Multiplayer.GetUniqueId();
         AddPlayer(peerId);
     }
