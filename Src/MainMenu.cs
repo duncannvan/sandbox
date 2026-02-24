@@ -11,6 +11,7 @@ public partial class MainMenu : CanvasLayer
 		JoinMenu
 	}
 
+	[Export] private PackedScene WorldScene;
 	private readonly Dictionary<MenuState, Control> _menus = [];
 	private Button _backButton;
 
@@ -19,23 +20,48 @@ public partial class MainMenu : CanvasLayer
 		RegisterMenus();
 
 		Button offlineButton = GetNode<Button>("%OfflineButton");
-		offlineButton.Pressed += () =>
-		{
-			NetworkManager.Instance.AddPlayer();
-			NetworkManager.Instance.LoadGame();
-		};
+		offlineButton.Pressed += OnOfflinePressed;
 
 		Button hostButton = GetNode<Button>("%HostButton");
 		hostButton.Pressed += () => DisplayMenu(MenuState.HostMenu);
 
 		Button startHostButton = GetNode<Button>("%StartHostButton");
-		startHostButton.Pressed += () => NetworkManager.Instance.HostGame();
+		startHostButton.Pressed += OnHostPressed;
 
 		Button joinButton = GetNode<Button>("%JoinButton");
-		joinButton.Pressed += () => NetworkManager.Instance.JoinGame();
+		joinButton.Pressed += OnJoinPressed;
 
 		_backButton = GetNode<Button>("%BackButton");
 		_backButton.Pressed += () => DisplayMenu(MenuState.MainMenu);
+	}
+
+	private void OnOfflinePressed()
+	{
+		CreateWorld();
+		NetworkManager.Instance.AddPlayer();
+	}
+
+	private void OnHostPressed()
+	{
+		if(NetworkManager.Instance.HostGame() == Error.Ok)
+		{
+			CreateWorld();
+		}
+	}
+
+	private void OnJoinPressed()
+	{
+		if(NetworkManager.Instance.JoinGame() == Error.Ok)
+		{
+			CreateWorld();
+		}
+	}
+
+	private void CreateWorld()
+	{
+		Node worldInstance = WorldScene.Instantiate();
+		GetTree().CurrentScene.AddChild(worldInstance);
+		Hide();
 	}
 
 	private void RegisterMenus()

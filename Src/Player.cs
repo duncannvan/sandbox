@@ -4,6 +4,9 @@ public partial class Player : CharacterBody3D
 {
     public override void _Ready()
     {
+        AddToGroup("Players");
+        GetNode<Label3D>("%NameTag").Text = Name;
+        SetupAuthority();
         SetupCamera();
     }
 

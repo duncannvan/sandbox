@@ -19,4 +19,15 @@ public partial class Player
         Velocity = direction.Normalized() * Speed;
         MoveAndSlide();
     }
+
+    private void SetupAuthority()
+    {
+        SetMultiplayerAuthority(int.Parse(Name));
+
+        if(!IsMultiplayerAuthority())
+        {
+            SetProcess(false);
+            SetPhysicsProcess(false);
+        }
+    }
 }

@@ -11,6 +11,14 @@ top_radius = 0.1
 bottom_radius = 0.4
 height = 1.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0c0kw"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Player" type="CharacterBody3D" unique_id=654385099]
 collision_mask = 3
 script = ExtResource("1_0c0kw")
@@ -32,3 +40,10 @@ mesh = SubResource("CylinderMesh_0c0kw")
 [node name="PlayerCamera" type="Camera3D" parent="Head" unique_id=1127465453]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=411135502]
+replication_config = SubResource("SceneReplicationConfig_0c0kw")
+
+[node name="NameTag" type="Label3D" parent="." unique_id=13386683]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1269875, 0)

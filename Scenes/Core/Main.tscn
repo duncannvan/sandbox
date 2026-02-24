@@ -1,8 +1,24 @@
 [gd_scene format=3 uid="uid://dugaivbj1o66n"]
 
 [ext_resource type="PackedScene" uid="uid://dttcjyceh0ms4" path="res://Scenes/Core/Environment.tscn" id="1_oept5"]
+[ext_resource type="PackedScene" uid="uid://ci17pbknqpfry" path="res://Scenes/UI/MainMenu.tscn" id="1_v6gkx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6gkx"]
+
+[sub_resource type="Sky" id="Sky_maamv"]
+sky_material = SubResource("ProceduralSkyMaterial_v6gkx")
+
+[sub_resource type="Environment" id="Environment_dermv"]
+background_mode = 2
+sky = SubResource("Sky_maamv")
 
 [node name="Main" type="Node" unique_id=442696121]
 
+[node name="MainMenu" parent="." unique_id=70847603 instance=ExtResource("1_v6gkx")]
+WorldScene = ExtResource("1_oept5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MainMenu" unique_id=1867551521]
+environment = SubResource("Environment_dermv")
+
 [node name="Environment" parent="." unique_id=1119110423 instance=ExtResource("1_oept5")]
-transform = Transform3D(0.9999441, -0.010496296, -0.0012216277, 0.010495209, 0.99994457, -0.0008958906, 0.0012309507, 0.00088303775, 0.99999887, -0.0015101433, 0.004284382, -0.0015296936)
+transform = Transform3D(0.99989456, -0.01443892, 0.0015763501, 0.014446343, 0.99988425, -0.0047978014, -0.0015068979, 0.0048200916, 0.99998736, -7.97988, -6.6394587, 12.400582)
