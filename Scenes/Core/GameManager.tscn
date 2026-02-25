@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://u6wkggl3dieo"]
+
+[ext_resource type="Script" uid="uid://dsie03b5gc2h2" path="res://Src/GameManager.cs" id="1_3xc37"]
+[ext_resource type="PackedScene" uid="uid://dhyw3bpvk4wki" path="res://Scenes/Core/World.tscn" id="2_h8j1i"]
+[ext_resource type="PackedScene" uid="uid://cffjduipbb3s5" path="res://Scenes/Core/Player.tscn" id="3_jav1w"]
+
+[node name="GameManager" type="Node" unique_id=1151205197]
+script = ExtResource("1_3xc37")
+_worldScene = ExtResource("2_h8j1i")
+_playerScene = ExtResource("3_jav1w")

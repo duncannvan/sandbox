@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dugaivbj1o66n"]
 
-[ext_resource type="PackedScene" uid="uid://dttcjyceh0ms4" path="res://Scenes/Core/Environment.tscn" id="1_oept5"]
+[ext_resource type="Script" uid="uid://d0ccj808oill1" path="res://Src/Main.cs" id="1_4v5pd"]
 [ext_resource type="PackedScene" uid="uid://ci17pbknqpfry" path="res://Scenes/UI/MainMenu.tscn" id="1_v6gkx"]
+[ext_resource type="PackedScene" uid="uid://u6wkggl3dieo" path="res://Scenes/Core/GameManager.tscn" id="4_4v5pd"]
+[ext_resource type="PackedScene" uid="uid://b7xlsjpydqns7" path="res://Scenes/Core/NetworkManager.tscn" id="5_gralk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v6gkx"]
 
@@ -13,12 +15,16 @@ background_mode = 2
 sky = SubResource("Sky_maamv")
 
 [node name="Main" type="Node" unique_id=442696121]
+script = ExtResource("1_4v5pd")
 
 [node name="MainMenu" parent="." unique_id=70847603 instance=ExtResource("1_v6gkx")]
-WorldScene = ExtResource("1_oept5")
+unique_name_in_owner = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="MainMenu" unique_id=1867551521]
 environment = SubResource("Environment_dermv")
 
-[node name="Environment" parent="." unique_id=1119110423 instance=ExtResource("1_oept5")]
-transform = Transform3D(0.99989456, -0.01443892, 0.0015763501, 0.014446343, 0.99988425, -0.0047978014, -0.0015068979, 0.0048200916, 0.99998736, -7.97988, -6.6394587, 12.400582)
+[node name="NetworkManager" parent="." unique_id=1107493430 instance=ExtResource("5_gralk")]
+unique_name_in_owner = true
+
+[node name="GameManager" parent="." unique_id=2090030116 instance=ExtResource("4_4v5pd")]
+unique_name_in_owner = true

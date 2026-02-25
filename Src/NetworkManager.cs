@@ -1,20 +1,17 @@
-using System.Linq;
 using Godot;
 
 public partial class NetworkManager : Node
 {
-    public static NetworkManager Instance { get; private set; }
-
-    [Export] private PackedScene PlayerScene;
+    [Signal] public delegate void PlayerConnectedEventHandler(long peerId);
+    [Signal] public delegate void PlayerDisconnectedEventHandler(long peerId);
+    [Signal] public delegate void ServerDisconnectedEventHandler();
 
     private const ushort Port = 7000;
     private const string DefaultServerIP = "localhost";
     private const int MaxConnections = 4;
-    private const byte ServerPeerId = 1;
 
     public override void _Ready()
     {
-        Instance = this;
         Multiplayer.PeerConnected += OnPeerConnected;
         Multiplayer.PeerDisconnected += OnPeerDisconnected;
         Multiplayer.ConnectedToServer += OnConnectOk;
@@ -30,15 +27,15 @@ public partial class NetworkManager : Node
         if (error != Error.Ok) return error;
 
         Multiplayer.MultiplayerPeer = peer;
-        AddPlayer(Multiplayer.GetUniqueId());
-
+        EmitSignal(SignalName.PlayerConnected, Multiplayer.GetUniqueId());
         return Error.Ok;
     }
 
-    public Error JoinGame(string address = DefaultServerIP)
+    public Error JoinGame(string ipAddr = DefaultServerIP)
     {
+        GD.Print(ipAddr);
         ENetMultiplayerPeer peer = new();
-        Error error = peer.CreateClient(address, Port);
+        Error error = peer.CreateClient(ipAddr, Port);
 
         if (error != Error.Ok) return error;
 
@@ -48,19 +45,17 @@ public partial class NetworkManager : Node
 
     private void OnPeerConnected(long peerId)
     {
-        AddPlayer(peerId);
+        EmitSignal(SignalName.PlayerConnected, peerId);
     }
 
     private void OnPeerDisconnected(long peerId)
     {
-        RemovePlayer(peerId);
+        EmitSignal(SignalName.PlayerDisconnected, peerId);
     }
 
     private void OnConnectOk()
     {
-        // TODO: Create world
-        int peerId = Multiplayer.GetUniqueId();
-        AddPlayer(peerId);
+        EmitSignal(SignalName.PlayerConnected, Multiplayer.GetUniqueId());
     }
 
     private void OnConnectionFail()
@@ -73,28 +68,10 @@ public partial class NetworkManager : Node
         QuitServer();
     }
 
-    public void AddPlayer(long peerId = ServerPeerId)
-    {
-        Player playerInstance = PlayerScene.Instantiate<Player>();
-        playerInstance.Name = peerId.ToString();
-        GetTree().CurrentScene.AddChild(playerInstance, true);
-    }
-
-    private void RemovePlayer(long peerId)
-    {
-        if(peerId == ServerPeerId)
-        {
-            QuitServer();
-        }
-
-        Node playerToRemove = GetTree().GetNodesInGroup("Players").FirstOrDefault(player => player.Name == peerId.ToString());
-        playerToRemove?.QueueFree();
-    }
-
     private void QuitServer()
     {
         Multiplayer.MultiplayerPeer.Close();
         Multiplayer.MultiplayerPeer = null;
-        GetTree().ReloadCurrentScene();
+        EmitSignal(SignalName.ServerDisconnected);
     }
 }

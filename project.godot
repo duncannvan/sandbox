@@ -14,10 +14,6 @@ config/name="Sandbox"
 run/main_scene="uid://dugaivbj1o66n"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 
-[autoload]
-
-NetworkManager="*uid://b7xlsjpydqns7"
-
 [dotnet]
 
 project/assembly_name="Sandbox"

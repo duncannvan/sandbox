@@ -11,57 +11,17 @@ public partial class MainMenu : CanvasLayer
 		JoinMenu
 	}
 
-	[Export] private PackedScene WorldScene;
+	[Signal] public delegate void PlayOfflineEventHandler();
+	[Signal] public delegate void HostGameEventHandler();
+	[Signal] public delegate void JoinGameEventHandler(string ipAddr);
+
 	private readonly Dictionary<MenuState, Control> _menus = [];
 	private Button _backButton;
 
 	public override void _Ready()
 	{
 		RegisterMenus();
-
-		Button offlineButton = GetNode<Button>("%OfflineButton");
-		offlineButton.Pressed += OnOfflinePressed;
-
-		Button hostButton = GetNode<Button>("%HostButton");
-		hostButton.Pressed += () => DisplayMenu(MenuState.HostMenu);
-
-		Button startHostButton = GetNode<Button>("%StartHostButton");
-		startHostButton.Pressed += OnHostPressed;
-
-		Button joinButton = GetNode<Button>("%JoinButton");
-		joinButton.Pressed += OnJoinPressed;
-
-		_backButton = GetNode<Button>("%BackButton");
-		_backButton.Pressed += () => DisplayMenu(MenuState.MainMenu);
-	}
-
-	private void OnOfflinePressed()
-	{
-		CreateWorld();
-		NetworkManager.Instance.AddPlayer();
-	}
-
-	private void OnHostPressed()
-	{
-		if(NetworkManager.Instance.HostGame() == Error.Ok)
-		{
-			CreateWorld();
-		}
-	}
-
-	private void OnJoinPressed()
-	{
-		if(NetworkManager.Instance.JoinGame() == Error.Ok)
-		{
-			CreateWorld(); // TODO: Remove, create when client successfully connects to server
-		}
-	}
-
-	private void CreateWorld()
-	{
-		Node worldInstance = WorldScene.Instantiate();
-		GetTree().CurrentScene.AddChild(worldInstance);
-		Hide();
+		SetupHandlers();
 	}
 
 	private void RegisterMenus()
@@ -80,6 +40,18 @@ public partial class MainMenu : CanvasLayer
 				_menus.Add(result, (Control)child);
 			}
 		}
+	}
+
+	private void SetupHandlers()
+	{
+		GetNode<Button>("%OfflineButton").Pressed += () => EmitSignal(SignalName.PlayOffline);
+		GetNode<Button>("%HostButton").Pressed += () => DisplayMenu(MenuState.HostMenu);
+		GetNode<Button>("%StartHostButton").Pressed += () => EmitSignal(SignalName.HostGame);
+		GetNode<Button>("%JoinButton").Pressed += () => DisplayMenu(MenuState.JoinMenu);
+		GetNode<Button>("%StartJoinButton").Pressed += () => EmitSignal(SignalName.JoinGame, GetNode<LineEdit>("%InviteCode").Text);
+
+		_backButton = GetNode<Button>("%BackButton");
+		_backButton.Pressed += () => DisplayMenu(MenuState.MainMenu);
 	}
 
 	private void DisplayMenu(MenuState menu)

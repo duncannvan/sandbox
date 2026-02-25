@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dttcjyceh0ms4"]
+[gd_scene format=3 uid="uid://dhyw3bpvk4wki"]
 
 [ext_resource type="Texture2D" uid="uid://doksdtx3km2n" path="res://Assets/PrototypeTextures/Vector/texture_08.svg" id="1_3p4ew"]
 [ext_resource type="Texture2D" uid="uid://dgowxtdjbxc78" path="res://Assets/PrototypeTextures/PNG/Green/texture_08.png" id="2_3p4ew"]
@@ -31,7 +31,7 @@ sky_material = SubResource("ProceduralSkyMaterial_3p4ew")
 background_mode = 2
 sky = SubResource("Sky_maamv")
 
-[node name="Environment" type="Node3D" unique_id=1119110423]
+[node name="World" type="Node3D" unique_id=1119110423]
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=2002761751]
 collision_layer = 2

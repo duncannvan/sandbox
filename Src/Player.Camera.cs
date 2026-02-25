@@ -12,23 +12,21 @@ public partial class Player : CharacterBody3D
         if(!IsMultiplayerAuthority()) return;
         _camera = GetNode<Camera3D>("%PlayerCamera");
         _camera.MakeCurrent();
-        // Input.MouseMode = Input.MouseModeEnum.Captured;
+        // Input.MouseMode = Input.MouseModeEnum.Captured; Commented for testing multiple instances on single device
     }
 
     private void HandleCameraRotation(InputEventMouseMotion mouseMotion)
     {
         // TEMP: Easy to use with multiple debug instances
-        if (!Input.IsMouseButtonPressed(MouseButton.Left))
-        {
-            return;
-        }
-        const float MAX_CAM_ANGEL_RAD = Mathf.Pi / 2;
+        if (!Input.IsMouseButtonPressed(MouseButton.Left)) return;
+
+        const float MaxCamAngleRad = Mathf.Pi / 2;
 
         // Rotate player body
         RotateY(-mouseMotion.Relative.X * MouseSense);
 
         // Rotate camera up or down
-        _cameraRotationX = Mathf.Clamp(_cameraRotationX - mouseMotion.Relative.Y * MouseSense, -MAX_CAM_ANGEL_RAD, MAX_CAM_ANGEL_RAD);
+        _cameraRotationX = Mathf.Clamp(_cameraRotationX - mouseMotion.Relative.Y * MouseSense, -MaxCamAngleRad, MaxCamAngleRad);
         _camera.Rotation = new Vector3(_cameraRotationX, 0, 0);
     }
 }

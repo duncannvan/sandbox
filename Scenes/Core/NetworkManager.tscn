@@ -1,10 +1,6 @@
 [gd_scene format=3 uid="uid://b7xlsjpydqns7"]
 
 [ext_resource type="Script" uid="uid://ctsv4c17l8co" path="res://Src/NetworkManager.cs" id="1_j5qjl"]
-[ext_resource type="PackedScene" uid="uid://dugaivbj1o66n" path="res://Scenes/Core/Main.tscn" id="2_12cwn"]
-[ext_resource type="PackedScene" uid="uid://cffjduipbb3s5" path="res://Scenes/Core/Player.tscn" id="3_12cwn"]
 
-[node name="Node" type="Node" unique_id=1107493430]
+[node name="NetworkManager" type="Node" unique_id=1107493430]
 script = ExtResource("1_j5qjl")
-GameScene = ExtResource("2_12cwn")
-PlayerScene = ExtResource("3_12cwn")

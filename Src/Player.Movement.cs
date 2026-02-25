@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Player
 {
-    private const byte Speed = 10; // TODO: Move to stat
+    private const byte Speed = 10; // TODO: Move to a stat
 
     private void HandleMovement()
     {
