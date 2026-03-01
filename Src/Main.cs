@@ -40,9 +40,12 @@ public partial class Main : Node
 
     private void OnPlayerConnected(long peerId)
     {
-        _gameManager.CreateWorld();
+        if(peerId == Multiplayer.GetUniqueId())
+        {
+            _gameManager.CreateWorld();
+            _menu.Hide();
+        }
         _gameManager.AddPlayer(peerId);
-        _menu.Hide();
     }
 
     private void OnPlayerDisconnected(long peerId)

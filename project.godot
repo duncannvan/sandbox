@@ -22,6 +22,7 @@ project/assembly_name="Sandbox"
 
 folder_colors={
 "res://Assets/": "red",
+"res://Resources/": "yellow",
 "res://Scenes/": "green",
 "res://Src/": "blue"
 }

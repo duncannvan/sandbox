@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dxb16jniurlq6"]
+
+[ext_resource type="Script" uid="uid://c74pi0pkmma6m" path="res://Src/Systems/Hitbox.cs" id="1_8ne64"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yrpa5"]
+
+[node name="Hitbox" type="Area3D" unique_id=1504818422]
+script = ExtResource("1_8ne64")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=832227816]
+shape = SubResource("SphereShape3D_yrpa5")

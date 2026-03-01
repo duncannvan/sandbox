@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ci17pbknqpfry"]
 
-[ext_resource type="Script" uid="uid://bcu72n12ct1qu" path="res://Src/MainMenu.cs" id="1_g18y6"]
+[ext_resource type="Script" uid="uid://bcu72n12ct1qu" path="res://Src/UI/MainMenu.cs" id="1_g18y6"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=70847603]
 script = ExtResource("1_g18y6")
